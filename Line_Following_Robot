@@ -1,15 +1,15 @@
 
-int Left_p=13;
-int Left_n=12;
-int Right_p=3;
-int Right_n=2;
+int Lm_p=13;
+int Lm_n=12;
+int Rm_p=3;
+int Rm_n=2;
 
 void setup()
 {
-  pinMode(Left_p,OUTPUT);
-  pinMode(Left_n,OUTPUT);
-  pinMode(Right_p,OUTPUT);
-  pinMode(Right_n,OUTPUT);
+  pinMode(Lm_p,OUTPUT);
+  pinMode(Lm_n,OUTPUT);
+  pinMode(Rm_p,OUTPUT);
+  pinMode(Rm_n,OUTPUT);
 
 pinMode(A0, INPUT);
 pinMode(A1, INPUT);
@@ -29,26 +29,26 @@ void loop()
 
   if(left<0 && right<0)
   {
-     digitalWrite(Left_p,HIGH);
-     digitalWrite(Left_n,LOW);
-     digitalWrite(Right_p,HIGH);
-     digitalWrite(Right_n,LOW);
+     digitalWrite(Lm_p,HIGH);
+     digitalWrite(Lm_n,LOW);
+     digitalWrite(Rm_p,HIGH);
+     digitalWrite(Rm_n,LOW);
      
   }
   if(left>0 && right<0)
   {
-     digitalWrite(Left_p,HIGH);
-     digitalWrite(Left_n,LOW);
-     digitalWrite(Right_p,LOW);
-     digitalWrite(Right_n,LOW);
+     digitalWrite(Lm_p,HIGH);
+     digitalWrite(Lm_n,LOW);
+     digitalWrite(Rm_p,LOW);
+     digitalWrite(Rm_n,LOW);
   }
   
 if(left<0 && right>0)
 {
-     digitalWrite(Left_p,LOW);
-     digitalWrite(Left_n,LOW);
-     digitalWrite(Right_p,HIGH);
-     digitalWrite(Right_n,LOW);    
+     digitalWrite(Lm_p,LOW);
+     digitalWrite(Lm_n,LOW);
+     digitalWrite(Rm_p,HIGH);
+     digitalWrite(Rm_n,LOW);    
 }
 
 }
