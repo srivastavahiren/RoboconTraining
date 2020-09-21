@@ -33,6 +33,7 @@ void loop()
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,HIGH);
      digitalWrite(Rm_n,LOW);
+     delay(1000);
      
   }
   if(left>0 && right<0)
@@ -41,6 +42,7 @@ void loop()
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,LOW);
      digitalWrite(Rm_n,LOW);
+     delay(1000);
   }
   
 if(left<0 && right>0)
@@ -49,6 +51,7 @@ if(left<0 && right>0)
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,HIGH);
      digitalWrite(Rm_n,LOW);    
+     delay(1000);
 }
 
 }
