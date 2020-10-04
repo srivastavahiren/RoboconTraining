@@ -27,31 +27,31 @@ void loop()
   int left=digitalRead(6);
   
 
-  if(left<0 && right<0)
+  if(left==0 && right==0)
   {
      digitalWrite(Lm_p,HIGH);
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,HIGH);
      digitalWrite(Rm_n,LOW);
-     delay(1000);
+     
      
   }
-  if(left>0 && right<0)
+  if(left==0 && right!=0)
   {
      digitalWrite(Lm_p,HIGH);
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,LOW);
      digitalWrite(Rm_n,LOW);
-     delay(1000);
+     
   }
   
-if(left<0 && right>0)
+if(left!=0 && right!=0)
 {
      digitalWrite(Lm_p,LOW);
      digitalWrite(Lm_n,LOW);
      digitalWrite(Rm_p,HIGH);
      digitalWrite(Rm_n,LOW);    
-     delay(1000);
+     
 }
 
 }
