@@ -1,0 +1,86 @@
+
+#define BLYNK_PRINT Serial
+
+
+#include <SoftwareSerial.h>
+SoftwareSerial SwSerial(10, 11); // RX, TX
+
+#include <BlynkSimpleSerialBLE.h>
+
+char auth[] = "YourAuthToken";
+
+int Lm_p=13;
+int Lm_n=12;
+int Rm_p=3;
+int Rm_n=2;
+
+
+
+BLYNK_WRITE(V0)         //Left direction
+{
+  if(param.asInt())
+  {
+  digitalWrite(Lm_p,LOW);
+  digitalWrite(Lm_n,LOW);
+  digitalWrite(Rm_p,HIGH);
+  digitalWrite(Rm_n,LOW);
+  }
+
+
+}
+BLYNK_WRITE(V1)       //Forward direction
+{
+  if(param.asInt())
+  {
+  digitalWrite(Lm_p,HIGH);
+  digitalWrite(Lm_n,LOW);
+  digitalWrite(Rm_p,HIGH);
+  digitalWrite(Rm_n,LOW);
+  
+  }
+
+
+}
+BLYNK_WRITE(V2)         //Right direction
+{
+  if(param.asInt())
+  {
+  digitalWrite(Lm_p,LOW);
+  digitalWrite(Lm_n,LOW);
+  digitalWrite(Rm_p,HIGH);
+  digitalWrite(Rm_n,LOW);
+  }
+
+
+}
+BLYNK_WRITE(V3)       // Backward direction
+{
+  if(param.asInt()) 
+  {
+  digitalWrite(Lm_p,LOW);
+  digitalWrite(Lm_n,LOW);
+  digitalWrite(Rm_p,HIGH);
+  digitalWrite(Rm_n,LOW);
+  }
+}
+
+void setup()
+{
+  // Debug console
+  Serial.begin(9600);
+
+  SerialBLE.begin(9600);
+  Blynk.begin(SerialBLE, auth);
+
+  Serial.println("Ready");
+  pinMode(Lm_p,OUTPUT);
+  pinMode(Lm_n,OUTPUT);
+  pinMode(Rm_p,OUTPUT);
+  pinMode(Rm_n,OUTPUT);
+}
+
+void loop()
+{
+  Blynk.run();
+}
+
