@@ -1,0 +1,139 @@
+
+#include <Servo.h>
+
+int tP= 10;
+int eP = 9;
+int Lm_p=13;
+int Lm_n=12;
+int Rm_p=3;
+int Rm_n=2;
+
+int dr;
+int dl;
+int df;
+Servo myservo;
+
+
+void setup() {
+  pinMode(tP, OUTPUT);
+  pinMode(eP, INPUT);
+  pinMode(Lm_p, OUTPUT);
+  pinMode(Lm_n, OUTPUT);
+  pinMode(Rm_p, OUTPUT);
+  pinMode(Rm_n, OUTPUT);
+  Servo.attach(8);
+  Servo.write(90);
+  delay(300);
+  df = readDistance();
+}
+
+void loop() {
+  dr = 0;
+  dl = 0;
+
+  if (df <= 15)
+  {
+    moveStop();
+    delay(100);
+    moveBackward();
+    delay(100);
+    moveStop();
+    delay(200);
+    dr = lookRight();
+    delay(200);
+    dl = lookLeft();
+    delay(200);
+
+    if (dr >= dl)
+    {
+      turnRight();
+      moveStop();
+    } else {
+      turnLeft();
+      moveStop();
+    }
+
+  } else {
+    moveForward();
+  }
+  distanceFront = readDistance();
+}
+int lookLeft() {
+  servo.write(30);
+  delay(300);
+  int distance = readDistance();
+  delay(100);
+  servo.write(90);
+  return distance;
+}
+int lookRight() {
+  servo.write(150);
+  delay(300);
+  int distance = readDistance();
+  delay(100);
+  servo.write(90);
+  return distance;
+}
+
+int readDistance()
+{
+  long duration;
+  int distance_in_cm;
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance_in_cm = (duration / 2) / 29.1; //to get the distance in cm;
+  return distance_in_cm;
+}
+
+void moveBackward() {
+  digitalWrite(motor1Input1, LOW);
+  digitalWrite(motor1Input2, HIGH);
+  digitalWrite(motor2Input1, LOW);
+  digitalWrite(motor2Input2, HIGH);
+}
+void turnRight() {
+  digitalWrite(motor1Input1, LOW);
+  digitalWrite(motor1Input2, HIGH);
+  digitalWrite(motor2Input1, HIGH);
+  digitalWrite(motor2Input2, LOW);
+  delay(500);
+  moveForward();
+}
+void turnLeft() {
+  digitalWrite(motor1Input1, HIGH);
+  digitalWrite(motor1Input2, LOW);
+  digitalWrite(motor2Input1, LOW);
+  digitalWrite(motor2Input2, HIGH);
+  delay(500);
+  moveForward();
+}
+void moveForward() {
+  digitalWrite(motor1Input1, HIGH);
+  digitalWrite(motor1Input2, LOW);
+  digitalWrite(motor2Input1, HIGH);
+  digitalWrite(motor2Input2, LOW);
+}
+void moveStop() {
+  digitalWrite(motor1Input1, HIGH);
+  digitalWrite(motor1Input2, HIGH);
+  digitalWrite(motor2Input1, HIGH);
+  digitalWrite(motor2Input2, HIGH);
+}
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
